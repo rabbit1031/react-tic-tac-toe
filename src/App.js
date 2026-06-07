@@ -11,11 +11,7 @@ function Board({ xIsNext, squares, onPlay }) {
     }
 
     const nextSquares = [...squares];
-    if (xIsNext) {
-      nextSquares[i] = 'X';
-    } else {
-      nextSquares[i] = 'O';
-    }
+    nextSquares[i] = xIsNext ? 'X' : 'O';
     onPlay(nextSquares);
   }
 
