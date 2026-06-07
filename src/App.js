@@ -5,8 +5,11 @@ function Square({ value, onSquareClick }) {
 }
 
 function Board({ xIsNext, squares, onPlay }) {
+  const winner = calculateWinner(squares);
+  const isDraw = !winner && squares.every(square => square !== null);
+
   function handleClick(i) {
-    if (squares[i] || calculateWinner(squares)) {
+    if (squares[i] || winner || isDraw) {
       return;
     }
 
@@ -14,9 +17,6 @@ function Board({ xIsNext, squares, onPlay }) {
     nextSquares[i] = xIsNext ? 'X' : 'O';
     onPlay(nextSquares);
   }
-
-  const winner = calculateWinner(squares);
-  const isDraw = !winner && squares.every(square => square !== null);
   let status;
   if (winner) {
     status = 'Winner: ' + winner;
